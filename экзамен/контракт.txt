@@ -1,0 +1,722 @@
+// SPDX-License-Identifier: GPL-3.0
+pragma experimental ABIEncoderV2;
+pragma solidity ^ 0.6.0;
+
+contract Diploma {
+    struct USER {
+        string FIO;
+        string[] seller;
+        string city;
+        string shop;
+        uint8 role;
+        uint sum;
+        address addr;
+    }
+    struct KNIGA_ZHALOB {
+        string name;
+        string comments;
+        string answer;
+        string author;
+        uint estimation;
+        uint[] like_dislike;
+        address[] addr;
+    }
+    struct ADDRESS {
+        string login;
+        uint8 lenght_comments;
+        uint8 loan;
+        uint8 sum;
+        uint time_do;
+    }
+    struct MESSAGES {
+        string FIO;
+        uint text;
+        uint8 role;
+        uint time;
+        uint8 status;
+    }
+    struct REQUEST {
+        string FIO;
+        uint8 sum;
+        uint8 minut;
+        uint time_ot;
+        uint8 status;
+        address addr;
+    }
+    struct PRODUCT {
+        string name;
+        string manufacturer;
+        uint data;
+        uint srok;
+        int256[] temp;
+        uint metering;
+        uint price;
+    }
+    struct PRODUCT_SHOP {
+        uint index;
+        string[] name;
+        uint[] data;
+        uint[] srok;
+        uint[] metering;
+        uint[] price;
+        uint[] sum;
+    }
+    struct MESSAGES_SHOP {
+        string[] FIO;
+        string[] text;
+        uint leng;
+        uint[] value;
+        uint[] time;
+        uint[] index;
+        uint[] status;
+    }
+
+    mapping(string => USER) us;
+    mapping(uint => KNIGA_ZHALOB) book;
+    mapping(string => string) inf;
+    mapping(address => ADDRESS) ad;
+    mapping(string => PRODUCT) prod;
+    mapping(string => PRODUCT_SHOP) sh;
+    mapping(string => MESSAGES_SHOP) me;
+    MESSAGES[] meseg;
+    REQUEST[] req;
+
+    string[] public SHOP;
+    string[] public SELLER;
+    string[] public ADMINISTRATOR;
+    string[] public PROD;
+
+    uint public length_book;
+
+    address public constant admin = 0x732aA77cB86481f942073f7690065ef7A5c95275;
+
+    constructor() public{
+        us["banck"].role = 5;
+        us["banck"].addr = 0x93d06580ee557334C0D599d4c52bAb9681D575B1;
+
+        us["111"].FIO = "Shop 1";
+        us["111"].role = 4;
+        us["111"].city = "Rostov";
+        us["111"].seller.push("Semyon Semyonovich Semyonov");
+        us["111"].sum = us["111"].seller.length;
+        us["111"].addr = 0x8d782597129C3C2a74b1B8BB405BB4cc6c59E32e;
+
+        us["222"].FIO = "Shop 2";
+        us["222"].role = 4;
+        us["222"].city = "Moscow";
+        us["222"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["333"].FIO = "Shop 3";
+        us["333"].role = 4;
+        us["333"].city = "Novoshakhtinsk";
+        us["333"].seller.push("Evgenieva Evgenievna");
+        us["333"].sum = us["333"].seller.length;
+        us["333"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["444"].FIO = "Shop 4";
+        us["444"].role = 4;
+        us["444"].city = "Seoul";
+        us["444"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["555"].FIO = "Shop 5";
+        us["555"].role = 4;
+        us["555"].city = "Adler";
+        us["555"].seller.push("Dmitriev Dmitry Dmitrievich");
+        us["555"].sum = us["555"].seller.length;
+        us["555"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["666"].FIO = "Shop 6";
+        us["666"].role = 4;
+        us["666"].city = "Beijing";
+        us["666"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["777"].FIO = "Shop 7";
+        us["777"].role = 4;
+        us["777"].city = "Petersburg";
+        us["777"].seller.push("Vasiliev Vasily Vasilyevich");
+        us["777"].sum = us["777"].seller.length;
+        us["777"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["888"].FIO = "Shop 8";
+        us["888"].role = 4;
+        us["888"].city = "Mines";
+        us["888"].seller.push("Igor Igorevich Igor");
+        us["888"].sum = us["888"].seller.length;
+        us["888"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["999"].FIO = "Shop 9";
+        us["999"].role = 4;
+        us["999"].city = "Taganrog";
+        us["999"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["goldfish"].FIO = "Goldfish";
+        us["goldfish"].role = 6;
+        us["goldfish"].addr = 0x14D07f6fEF21Ab5A38dac79686a4f6d22A95D28d;
+
+        us["ivan"].FIO = "Ivanov Ivan Ivanovich";
+        us["ivan"].role = 1;
+        us["ivan"].addr = admin;
+
+        us["semen"].FIO = "Semyon Semyonovich Semyonov";
+        us["semen"].role = 2;
+        us["semen"].shop = us["111"].FIO;
+        us["semen"].city = us["111"].city;
+        us["semen"].addr = 0xe66F22144639BC3aeC675f27dBbE101304deF124;
+
+        us["ugin"].FIO = "Evgenieva Evgenievna";
+        us["ugin"].role = 2;
+        us["ugin"].shop = us["333"].FIO;
+        us["ugin"].city = us["333"].city;
+        us["ugin"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["dima"].FIO = "Dmitriev Dmitry Dmitrievich";
+        us["dima"].role = 2;
+        us["dima"].shop = us["555"].FIO;
+        us["dima"].city = us["555"].city;
+        us["dima"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["vasya"].FIO = "Vasiliev Vasily Vasilyevich";
+        us["vasya"].role = 2;
+        us["vasya"].shop = us["777"].FIO;
+        us["vasya"].city = us["777"].city;
+        us["vasya"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["igor"].FIO = "Igor Igorevich Igor";
+        us["igor"].role = 2;
+        us["igor"].shop = us["888"].FIO;
+        us["igor"].city = us["888"].city;
+        us["igor"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["roman"].FIO = "Romanov Roma Romanovich";
+        us["roman"].role = 3;
+        us["roman"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["nikola"].FIO = "Nikolay Nikolaevich Nikolaev";
+        us["nikola"].role = 3;
+        us["nikola"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["oleg"].FIO = "Oleg Olegovich Olegov";
+        us["oleg"].role = 3;
+        us["oleg"].addr = 0x0000000000000000000000000000000000000000;
+
+        us["petr"].FIO = "Petrov Pyotr Petrovich";
+        us["petr"].role = 3;
+        us["petr"].addr = 0xbAcD6Cd1bD9fc57B5C9b65f0692Da204EF71Ef0D;
+
+        us["alex"].FIO = "Alexandrova Alexandra Alexandrovna";
+        us["alex"].role = 3;
+        us["alex"].addr = 0x0000000000000000000000000000000000000000;
+
+        book[1].name = us["111"].FIO;
+        book[1].comments = "Excellent quality of tavara!";
+        book[1].author = us["oleg"].FIO;
+        book[1].estimation = 10;
+        book[1].like_dislike.push(25);
+        book[1].like_dislike.push(0);
+
+        book[2].name = us["111"].FIO;
+        book[2].author = us["petr"].FIO;
+        book[2].answer = "Confirm";
+        book[2].estimation = 9;
+        book[2].like_dislike.push(20);
+        book[2].like_dislike.push(2);
+
+        book[3].name = us["111"].FIO;
+        book[3].comments = "Bvstroe service!";
+        book[3].author = us["petr"].FIO;
+        book[3].estimation = 9;
+        book[3].like_dislike.push(15);
+        book[3].like_dislike.push(1);
+
+        book[4].name = us["111"].FIO;
+        book[4].author = us["nikola"].FIO;
+        book[4].answer = "And I waited a long time((";
+        book[4].estimation = 2;
+        book[4].like_dislike.push(0);
+        book[4].like_dislike.push(11);
+
+        book[5].name = us["111"].FIO;
+        book[5].author = us["semen"].FIO;
+        book[5].answer = "The store apologizes for the long wait";
+        book[5].like_dislike.push(40);
+        book[5].like_dislike.push(15);
+
+        book[6].name = us["333"].FIO;
+        book[6].comments = "Nothing special";
+        book[6].author = us["roman"].FIO;
+        book[6].estimation = 5;
+        book[6].like_dislike.push(3);
+        book[6].like_dislike.push(20);
+
+        book[7].name = us["333"].FIO;
+        book[7].author = us["petr"].FIO;
+        book[7].answer = "I don't agree with you everything is super";
+        book[7].estimation = 10;
+        book[7].like_dislike.push(15);
+        book[7].like_dislike.push(0);
+
+        book[8].name = us["333"].FIO;
+        book[8].author = us["alex"].FIO;
+        book[8].comments = "Thank you, I liked everything";
+        book[8].estimation = 8;
+        book[8].like_dislike.push(23);
+        book[8].like_dislike.push(1);
+
+        book[9].name = us["333"].FIO;
+        book[9].author = us["roman"].FIO;
+        book[9].answer = "And me!";
+        book[9].estimation = 9;
+        book[9].like_dislike.push(36);
+        book[9].like_dislike.push(5);
+
+        book[10].name = us["888"].FIO;
+        book[10].author = us["alex"].FIO;
+        book[10].comments = "The seller was rude to me, I will not come to you again!";
+        book[10].estimation = 1;
+        book[10].like_dislike.push(10);
+        book[10].like_dislike.push(2);
+
+        book[11].name = us["888"].FIO;
+        book[11].author = us["petr"].FIO;
+        book[11].answer = "I confirm the terrible service!";
+        book[11].estimation = 2;
+        book[11].like_dislike.push(11);
+        book[11].like_dislike.push(0);
+
+        book[12].name = us["888"].FIO;
+        book[12].author = us["oleg"].FIO;
+        book[12].answer = "Service in the store for a C grade.!";
+        book[12].estimation = 3;
+        book[12].like_dislike.push(15);
+        book[12].like_dislike.push(0);
+
+        inf[us["111"].FIO] = "111";
+        inf[us["222"].FIO] = "222";
+        inf[us["333"].FIO] = "333";
+        inf[us["444"].FIO] = "444";
+        inf[us["555"].FIO] = "555";
+        inf[us["666"].FIO] = "666";
+        inf[us["777"].FIO] = "777";
+        inf[us["888"].FIO] = "888";
+        inf[us["999"].FIO] = "999";
+        inf[us["goldfish"].FIO] = "goldfish";
+        inf[us["ivan"].FIO] = "ivan";
+        inf[us["semen"].FIO] = "semen";
+        inf[us["ugin"].FIO] = "ugin";
+        inf[us["dima"].FIO] = "dima";
+        inf[us["vasya"].FIO] = "vasya";
+        inf[us["igor"].FIO] = "igor";
+        inf[us["roman"].FIO] = "roman";
+        inf[us["nikola"].FIO] = "nikola";
+        inf[us["oleg"].FIO] = "oleg";
+        inf[us["petr"].FIO] = "petr";
+        inf[us["alex"].FIO] = "alex";
+
+        ad[us["111"].addr].login = "111";
+        ad[us["222"].addr].login = "222";
+        ad[us["333"].addr].login = "333";
+        ad[us["444"].addr].login = "444";
+        ad[us["555"].addr].login = "555";
+        ad[us["666"].addr].login = "666";
+        ad[us["777"].addr].login = "777";
+        ad[us["888"].addr].login = "888";
+        ad[us["999"].addr].login = "999";
+        ad[us["goldfish"].addr].login = "goldfish";
+        ad[us["ivan"].addr].login = "ivan";
+        ad[us["semen"].addr].login = "semen";
+        ad[us["ugin"].addr].login = "ugin";
+        ad[us["dima"].addr].login = "dima";
+        ad[us["vasya"].addr].login = "vasya";
+        ad[us["igor"].addr].login = "igor";
+        ad[us["roman"].addr].login = "roman";
+        ad[us["nikola"].addr].login = "nikola";
+        ad[us["oleg"].addr].login = "oleg";
+        ad[us["petr"].addr].login = "petr";
+        ad[us["alex"].addr].login = "alex";
+        ad[us["bank"].addr].login = "banck";
+
+        ad[us["oleg"].addr].lenght_comments = 1;
+        ad[us["petr"].addr].lenght_comments = 4;
+        ad[us["nikola"].addr].lenght_comments = 1;
+        ad[us["semen"].addr].lenght_comments = 1;
+        ad[us["roman"].addr].lenght_comments = 2;
+        ad[us["alex"].addr].lenght_comments = 2;
+        ad[us["oleg"].addr].lenght_comments = 1;
+
+        ad[us["111"].addr].loan = 1;
+        ad[us["222"].addr].loan = 1;
+        ad[us["333"].addr].loan = 1;
+        ad[us["444"].addr].loan = 1;
+        ad[us["555"].addr].loan = 1;
+        ad[us["666"].addr].loan = 1;
+        ad[us["777"].addr].loan = 1;
+        ad[us["888"].addr].loan = 1;
+        ad[us["999"].addr].loan = 1;
+
+        SHOP.push(us["111"].FIO);
+        SHOP.push(us["222"].FIO);
+        SHOP.push(us["333"].FIO);
+        SHOP.push(us["444"].FIO);
+        SHOP.push(us["555"].FIO);
+        SHOP.push(us["666"].FIO);
+        SHOP.push(us["777"].FIO);
+        SHOP.push(us["888"].FIO);
+        SHOP.push(us["999"].FIO);
+
+        SELLER.push(us["semen"].FIO);
+        SELLER.push(us["ugin"].FIO);
+        SELLER.push(us["dima"].FIO);
+        SELLER.push(us["vasya"].FIO);
+        SELLER.push(us["igor"].FIO);
+
+        ADMINISTRATOR.push(us["ivan"].FIO);
+
+        length_book = 12;
+    }
+    
+    modifier lo(string memory login) {
+        require(us[login].addr != 0x0000000000000000000000000000000000000000);
+        _;}
+        
+    modifier prd(string memory name) {
+        require(prod[name].data != 0);
+        _;}
+        
+    function comparison (string memory name1, string memory name2) public pure returns(bool){
+        return(keccak256(abi.encode(name1)) == keccak256(abi.encode(name2)));}
+    
+    function Viewing_purchase(string memory name, uint8 i) public view returns(string memory, string memory, uint, uint, uint, uint) {
+        return(me[name].text[i], me[name].FIO[i], me[name].time[i], me[name].status[i], me[name].leng, sh[name].price[me[name].index[i]] * me[name].value[i]);
+    }
+    
+    function Rating(string memory FIO) public view returns(uint) {
+        uint8 n;
+        uint r;
+       for (uint8 i; i < length_book; i++) {
+            if (comparison(FIO, book[i].name))
+                if (book[i].like_dislike[0] > book[i].like_dislike[1]) 
+                    if (book[i].like_dislike[0] > 10)
+                        if (us[inf[book[i].author]].role == 3 ) {
+                            n++;
+                            r +=  (book[i].estimation * 1000 * book[i].like_dislike[0] / (book[i].like_dislike[0] + book[i].like_dislike[1]));}
+        }
+        return(r/n);
+    }
+
+    function Authorization(string memory login) public view lo(login) returns(address, string memory, uint, string memory, string memory, string[] memory, uint){
+        return (us[login].addr, us[login].FIO, us[login].role, us[login].city, us[login].shop, us[login].seller, us[login].sum);
+    }
+
+    function Additional_information() public view returns(uint, uint, uint, uint){
+        return (ad[msg.sender].time_do, ad[msg.sender].loan, req.length, ad[msg.sender].sum);
+    }
+
+    function Book(uint8 i) public view returns(string memory, string memory, string memory, string memory, uint, uint, uint){
+        return (book[i].name, book[i].comments, book[i].answer, book[i].author, book[i].estimation, book[i].like_dislike[0], book[i].like_dislike[1]);
+    }
+
+    function LENGHT_SHOP() public view returns(uint, uint, uint, uint, uint, uint){
+        return (SHOP.length, SELLER.length, ADMINISTRATOR.length, 0, PROD.length, sh[us[ad[msg.sender].login].FIO].index);
+    }
+
+    function LENGHT() public view returns(uint, uint, uint, uint){
+        return (0, meseg.length, ad[msg.sender].lenght_comments, length_book);
+    }
+
+    function Users(string memory FIO) public view returns(string memory, string memory, uint, string memory) {
+        require(us[inf[FIO]].role != 4);
+        require(us[inf[FIO]].role != 0);
+        return (FIO, inf[FIO], us[inf[FIO]].role, us[inf[FIO]].shop);
+    }
+
+    function Shops(string memory name) public view returns(string memory, string memory, string memory, string[] memory, uint, uint, address){
+        require(us[inf[name]].role == 4);
+        return (name, inf[name], us[inf[name]].city, us[inf[name]].seller, us[inf[name]].sum, us[inf[name]].seller.length, us[inf[name]].addr);
+    }
+    
+    function Viewing_SHOP(uint8 i) public view returns(string memory){
+        return (SHOP[i]);
+    }
+
+    function Viewing_SELLER(uint8 i) public view returns(string memory){
+        return (SELLER[i]);
+    }
+
+    function Viewing_ADMINISTRATOR(uint8 i) public view returns(string memory){
+        return (ADMINISTRATOR[i]);
+    }
+
+    function Viewing_PROD(uint8 i) public view returns(string memory){
+        return (PROD[i]);
+    }
+
+    function Viewing_REQEST(uint8 i) public view returns(string memory, uint, uint, uint, uint, address){
+        return (req[i].FIO, req[i].sum, req[i].minut, req[i].time_ot, req[i].status, req[i].addr);
+    }
+
+    function Viewing_MESSAGES(uint8 i) public view returns(string memory, uint, uint, uint, uint){
+        return (meseg[i].FIO, meseg[i].role, meseg[i].text, meseg[i].status, meseg[i].time);
+    }
+
+    function Viewing_PRODUCT(string memory name) public view prd(name) returns(string memory, string memory, uint, uint, int256 [] memory, uint, uint){
+        return (prod[name].name, prod[name].manufacturer, prod[name].data, prod[name].srok, prod[name].temp, prod[name].metering, prod[name].price);
+    }
+
+    function Viewing_PRODUCT_SHOP(string memory name, uint8 i)public view returns(string memory, uint, uint, uint, uint, uint){
+        return (sh[name].name[i], sh[name].data[i], sh[name].srok[i], sh[name].metering[i], sh[name].sum[i], sh[name].price[i]);
+    }
+    
+    function My_coments(uint8 index) public view returns(string memory, string memory, uint, uint, uint){
+        uint8 j;
+        string memory text;
+        for (uint8 i = 1; i <= length_book; i++) {
+            if (comparison(book[i].author, us[ad[msg.sender].login].FIO)) {
+                j++;
+                if (j == index) {
+                    text = book[i].comments;
+                    if (comparison(text, ""))
+                        text = book[i].answer;
+                    return (book[i].name, text, book[i].estimation, book[i].like_dislike[0], book[i].like_dislike[1]);
+                }
+            }
+        }
+    }
+    
+    function Request_purchase(string memory name, string memory text, uint8 i, uint sum) public{
+        me[name].FIO.push(us[ad[msg.sender].login].FIO);
+        me[name].text.push(text);
+        me[name].leng++;
+        me[name].value.push(sum);
+        me[name].time.push(block.timestamp);
+        me[name].index.push(i);
+        me[name].status.push(1);
+    }
+
+    function Answer_purchase(string memory name, uint i) public {
+        sh[name].sum[me[name].index[i]] - me[name].value[i];
+        me[name].status[i] = 2;
+    }
+
+    function Check_time() public{
+        if (ad[msg.sender].time_do < block.timestamp)
+            if (ad[msg.sender].time_do != 0)
+                ad[msg.sender].loan = 4;
+    }
+
+    function Registration(string memory FIO, string memory login) public {
+        require(us[login].addr == 0x0000000000000000000000000000000000000000);
+        us[login].FIO = FIO;
+        us[login].role = 3;
+        us[login].addr = msg.sender;
+        ad[msg.sender].login = login;
+        ad[msg.sender].loan = 1;
+        inf[FIO] = login;
+    }
+
+    function Registration_PRODUCT(string memory name, uint srok, int256 temp_ot, int256 temp_do, uint metering, uint price) public {
+        require(prod[name].data == 0);
+        prod[name].name = name;
+        prod[name].manufacturer = us[ad[msg.sender].login].FIO;
+        prod[name].data = block.timestamp;
+        prod[name].srok = block.timestamp + (srok * 60);
+        prod[name].temp.push(temp_ot);
+        prod[name].temp.push(temp_do);
+        prod[name].metering = metering;
+        prod[name].price = price;
+        PROD.push(name);
+    }
+
+    function Registration_SHOP(string memory name, string memory city, string memory login, address addr) public {
+        require(us[login].addr == 0x0000000000000000000000000000000000000000);
+        us[login].FIO = name;
+        us[login].role = 4;
+        us[login].city = city;
+        us[login].addr = addr;
+        inf[name] = login;
+        SHOP.push(name);
+    }
+
+    function Registration_PRODUCT_SHOP(string memory name, uint8 price, uint8 sum) public prd(name) {
+        uint8 a;
+        for (uint8 i = 0; i < sh[us[ad[msg.sender].login].FIO].index; i++) {
+            if (comparison(sh[us[ad[msg.sender].login].FIO].name[i], name)) {
+                sh[us[ad[msg.sender].login].FIO].sum[i] += sum;
+                a++;
+            }
+        }
+        if (a == 0) {
+            sh[us[ad[msg.sender].login].FIO].index++;
+            sh[us[ad[msg.sender].login].FIO].name.push(prod[name].name);
+            sh[us[ad[msg.sender].login].FIO].data.push(prod[name].data);
+            sh[us[ad[msg.sender].login].FIO].srok.push(prod[name].srok);
+            sh[us[ad[msg.sender].login].FIO].metering.push(prod[name].metering);
+            sh[us[ad[msg.sender].login].FIO].price.push(price);
+            sh[us[ad[msg.sender].login].FIO].sum.push(sum);
+        }
+    }
+
+    function Delete_SHOP(string memory name) public{
+        for (uint8 i = 0; i < SHOP.length; i++) {
+            if (comparison(SHOP[i], us[inf[name]].FIO))
+                SHOP[i] = "Data deleted";
+        }
+        for (uint8 j = 0; j < us[inf[name]].sum; j++) {
+            for (uint8 t = 0; t < SELLER.length; t++) {
+                if (comparison(SELLER[t], us[inf[us[inf[name]].seller[j]]].FIO)) {
+                    us[inf[us[inf[name]].seller[j]]].role = 3;
+                    SELLER[t] = "Data deleted";
+                }
+            }
+            delete us[inf[us[inf[name]].seller[j]]].shop;
+        }
+        delete us[inf[name]];
+        delete inf[name];
+    }
+
+    function Delete_PRODUCT(string memory name) public {
+        for (uint8 i; i < PROD.length; i++) {
+            if (comparison(PROD[i], name))
+                PROD[i] = "Data deleted";
+        }
+        delete prod[name];
+    }
+    
+    function Delete_PRODUCT_SHOP(string memory FIO, uint8 i) public { // i --;
+        sh[FIO].name[i] = "Data deleted";
+        delete sh[FIO].data[i];
+        delete sh[FIO].srok[i];
+        delete sh[FIO].metering[i];
+        delete sh[FIO].price[i];
+        delete sh[FIO].sum[i];
+    }
+
+    function Raising_Downgrades(string memory FIO, uint8 result, string memory shop) public{
+        if (result == 0) {
+            if (us[inf[FIO]].role == 2) {
+                us[inf[FIO]].role = 1;
+                ADMINISTRATOR.push(FIO);
+                for (uint i = 0; i < SELLER.length; i++) {
+                    if (comparison(SELLER[i], FIO))
+                        SELLER[i] = "Data deleted";
+                }
+                for (uint8 j; j < us[inf[us[inf[FIO]].shop]].seller.length; j++) {
+                    if (comparison(us[inf[us[inf[FIO]].shop]].seller[j], FIO)) {
+                        us[inf[us[inf[FIO]].shop]].seller[j] = "Data deleted";
+                        us[inf[us[inf[FIO]].shop]].sum--;
+                        us[inf[FIO]].shop = "";
+                    }
+                }
+            }
+            if (us[inf[FIO]].role == 3) {
+                for (uint8 i; i < SHOP.length; i++) {
+                    if (comparison(SHOP[i], shop)) {
+                        us[inf[FIO]].role = 2;
+                        us[inf[FIO]].shop = shop;
+                        us[inf[shop]].seller.push(FIO);
+                        us[inf[shop]].sum++;
+                        SELLER.push(FIO);
+                    }
+                }
+            }
+        }
+        if (result == 1) {
+            if (us[inf[FIO]].role == 2) {
+                us[inf[FIO]].role = 3;
+                for (uint8 j; j < us[inf[us[inf[FIO]].shop]].seller.length; j++) {
+                    if (comparison(us[inf[us[inf[FIO]].shop]].seller[j], FIO)) {
+                        us[inf[us[inf[FIO]].shop]].seller[j] = "Data deleted";
+                        us[inf[us[inf[FIO]].shop]].sum--;
+                        us[inf[FIO]].shop = "";
+                    }
+                }
+                for (uint8 i; i < SELLER.length; i++) {
+                    if (comparison(SELLER[i], FIO))
+                        SELLER[i] = "Data deleted";
+                }
+            }
+            if (us[inf[FIO]].role == 1) {
+                for (uint8 i; i < SHOP.length; i++) {
+                    if (comparison(SHOP[i], shop)) {
+                        if (admin == msg.sender) {
+                            us[inf[FIO]].role = 2;
+                            us[inf[FIO]].shop = shop;
+                            us[inf[shop]].seller.push(FIO);
+                            us[inf[shop]].sum++;
+                            SELLER.push(FIO);
+                        }
+                    }
+                }
+                for (uint8 i; i < ADMINISTRATOR.length; i++) {
+                    if (comparison(ADMINISTRATOR[i], FIO))
+                        ADMINISTRATOR[i] = "Data deleted";
+                }
+            }
+        }
+        for (uint8 j; j < meseg.length; j++) {
+            if (comparison(meseg[j].FIO, FIO))
+                meseg[j].status = 2;
+        }
+    }
+
+    function Request(uint8 text) public{
+        meseg.push(MESSAGES(us[ad[msg.sender].login].FIO, text, us[ad[msg.sender].login].role, block.timestamp, 1));
+    }
+
+    function Request_loan(uint8 sum, uint8 minut) public{
+        if (ad[msg.sender].loan == 1) {
+            req.push(REQUEST(us[ad[msg.sender].login].FIO, sum, minut, block.timestamp, 1, msg.sender));
+            ad[msg.sender].loan = 2;
+            ad[msg.sender].sum = sum;
+        }
+    }
+
+    function The_bank_response(uint8 i, uint8 result) public{
+        address addr = req[i].addr;
+        if (result == 2) {
+            ad[msg.sender].loan = 1;
+            ad[msg.sender].time_do = 0;
+            ad[msg.sender].sum = 0;
+        }
+        else {
+            if (result == 0) {
+                ad[addr].loan = 3;
+                ad[addr].time_do = block.timestamp + (ad[addr].sum * 60);
+            }
+            else {
+                ad[addr].loan = 1;
+                ad[addr].time_do = 0;
+                ad[addr].sum = 0;
+            }
+            req[i].status = 2;
+        }
+    }
+
+    function Comments_book(uint8 index, string memory like_dislike) public{
+        require(keccak256(abi.encode(book[index].author)) != keccak256(abi.encode(us[ad[msg.sender].login].FIO)));
+        if (keccak256(abi.encode(like_dislike)) != keccak256(abi.encode(""))) {
+            for (uint8 i; i < book[index].addr.length; i++) {
+                if (msg.sender == book[index].addr[i])
+                    require(index == 0);
+            }
+            book[index].addr.push(msg.sender);
+            if (comparison(like_dislike, "like"))
+                book[index].like_dislike[0]++;
+            else
+                book[index].like_dislike[1]++;
+        }
+    }
+
+    function Book_zhalob(string memory name, string memory comments, string memory answer, uint estimation) public{
+        length_book++;
+        ad[msg.sender].lenght_comments++;
+        book[length_book].author = us[ad[msg.sender].login].FIO;
+        if (keccak256(abi.encode(comments)) != keccak256(abi.encode("")))
+            book[length_book].comments = comments;
+        if (keccak256(abi.encode(answer)) != keccak256(abi.encode("")))
+            book[length_book].answer = answer;
+        book[length_book].like_dislike.push(0);
+        book[length_book].like_dislike.push(0);
+        book[length_book].name = name;
+        book[length_book].estimation = estimation;
+    }
+}

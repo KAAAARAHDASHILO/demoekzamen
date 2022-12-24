@@ -1,0 +1,392 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333333;
+  
+  font-size: 30px;
+  background-color: #b3b7d6;
+}
+
+.Backgroud-red {
+  background-color: #333333ce;
+  height: 150vh;
+  color: #ffffffcf;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.button {
+  background-color: #6b65829c;
+  color: #b3b7d6;
+  max-height: 40px;
+  padding: 1px 40px;
+  font-size: 30px;
+  border: 0;
+}
+
+.buttonf {
+  background-color: #333333;
+  color: #ffffff;
+  max-height: 40px;
+  padding: 1px 40px;
+  font-size: 30px;
+  border: 0;
+}
+
+.button:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.button2 {
+  background-color: #333333;
+  color: #b3b7d6;
+  max-height: 40px;
+  width: 395px;
+  padding: 1px 40px;
+  font-size: 30px;
+  border: 0;
+}
+
+.buttone {
+  background-color: #333333;
+  color: #ffffff;
+  max-height: 40px;
+  width: 395px;
+  padding: 1px 40px;
+  font-size: 30px;
+  border: 0;
+}
+
+.button3 {
+  background-color: #6b65829c;
+  color: #b3b7d6;
+  max-height: 40px;
+  width: 370px;
+  padding: 1px 40px;
+  font-size: 30px;
+  border: 0;
+}
+
+.button3e {
+  background-color: #333333;
+  color: #ffffff;
+  max-height: 40px;
+  width: 370px;
+  padding: 1px 40px;
+  font-size: 30px;
+  border: 0;
+}
+
+.button3_2 {
+  background-color: #6b65829c;
+  color: #b3b7d6;
+  height: 70px;
+  width: 370px;
+  padding: 1px 40px;
+  font-size: 30px;
+  border: 0;
+}
+
+.mes_but {
+  height: 400px;
+  width: 1085px;
+  overflow-y: auto;
+  background-color: #828598;
+}
+
+.mes_but2 {
+  height: 400px;
+  width: 1085px;
+  overflow-y: auto;
+  background-color: #828598;
+}
+
+.button2:hover {
+  color: #ffffff;
+}
+
+.button3:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.button3_2:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.input {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+  border: 0;
+}
+.input_two {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+  width: 600px;
+  border: 0;
+}
+
+.navbar {
+  height: 60px;
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.navbar_two {
+  height: 60px;
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.navbar_three {
+  height: 60px;
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.text {
+  background-color: #00000000;
+  color: #b3b7d6;
+  max-height: 40px;
+  padding: 1px 40px;
+  font-size: 30px;
+  align-items: center;
+  border: 0;
+}
+
+.text_two4 {
+  background-color: #00000000;
+  color: #3333333a;
+  font-size: 25px;
+  border: 0;
+}
+
+.text_two {
+  background-color: #00000000;
+  color: #33333362;
+  font-size: 25px;
+  border: 0;
+}
+.text_two:hover {
+  color: #333333;
+}
+
+.text_two2 {
+  background-color: #00000000;
+  color: #333333;
+  font-size: 30px;
+  border: 0;
+}
+
+.text_three {
+  background-color: #00000000;
+  color: #b3b7d6;
+  font-size: 25px;
+  border: 0;
+}
+.text_three:hover {
+  background-color: #00000000;
+  color: #ffffff;
+}
+
+.textf {
+  background-color: #00000000;
+  color: #ffffff;
+  max-height: 40px;
+  padding: 1px 40px;
+  font-size: 30px;
+  align-items: center;
+  border: 0;
+}
+
+.text:hover {
+  background-color: #00000000;
+  color: #ffffff;
+}
+.message {
+  max-height: 800px;
+  width: 665px;
+  border-radius: 50px;
+  overflow-y: auto;
+  background-color: #828598;
+}
+
+.message_two {
+  max-height:450px;
+  width: 665px;
+  overflow-y: auto;
+  color: #333333;
+  background-color: #828598;
+}
+
+.message_two5 {
+  max-height:480px;
+  width: 665px;
+  overflow-y: auto;
+  background-color: #828598;
+}
+
+.message_two2 {
+  height:280px;
+  width: 665px;
+  color: #333333;
+  overflow-y: auto;
+  background-color: #828598;
+}
+
+.message_two3 {
+  height:360px;
+  width: 665px;
+  color: #333333;
+  overflow-y: auto;
+  background-color: #828598;
+}
+
+.message_three {
+  height: 100px;
+  width: 150px;
+  background-color: #828598;
+}
+
+.message_foo {
+  height: 100px;
+  width: 150px;
+  overflow-y: auto;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.message_foo_2 {
+  height: 170px;
+  width: 300px;
+  color: #333333;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+.message_foo_3 {
+  max-height: 800px;
+  width: 300px;
+  overflow-y: auto;
+  background-color: #828598;
+}
+
+.message_five {
+  max-height: 800px;
+  width: 905px;
+  overflow-y: auto;
+  background-color: #828598;
+}
+
+.message_five_2 {
+  max-height: 800px;
+  width: 603px;
+  overflow-y: auto;
+  background-color: #828598;
+}
+
+.message_five_3 {
+  max-height: 400px;
+  color: #333333;
+  width: 603px;
+  overflow-y: auto;
+  background-color: #ffffff9d;
+}
+
+.message_six {
+  width: 60px;
+  overflow-y: auto;
+  justify-content: right;
+  background-color: #00000000;
+}
+
+.message_nine {
+  max-height: 50px;
+  width: 650px;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.input2 {
+  width: 350px;
+}
+
+.input3 {
+  height: 100px;
+  min-width: 500px;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  padding: 5px 20px;
+}
+
+.flex {
+  display:-webkit-flex;
+-webkit-align-items: baseline;
+display: flex;
+align-items: baseline;
+}
+
+.btn {
+  background-color: #6b65829c;
+  color: #b3b7d6;
+  height: 70px;
+  width: 116px;
+  padding: 1px 40px;
+  font-size: 30px;
+  border: 0;
+  align-items: center;
+}
+
+.btns {
+  background-color: #333333;
+  color: #ffffff;
+  height: 70px;
+  width: 116px;
+  padding: 1px 40px;
+  font-size: 30px;
+  border: 0;
+  align-items: center;
+}
+
+.btn:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.inputs {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  outline: none;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+}
+
+.inputs:checked {
+  border: 6px solid #333333;
+}
